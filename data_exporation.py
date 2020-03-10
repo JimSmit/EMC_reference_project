@@ -5,26 +5,25 @@ Created on Wed Mar  4 12:36:54 2020
 @author: 31643
 """
 
+# Import libraries
 import numpy as np
 import pandas as pd
 import math
 import matplotlib.pyplot as plt
 import os
+import EMC_library
+
+
+# set home directory
 os.getcwd()
 os.chdir('C:\\Users\\31643\\Documents\\REF_PROJECT_EMC')
 
-data = pd.read_csv('ref_data_emc_200304.csv',sep='";"',engine='python')
-mini_data = pd.read_csv('ref_data_emc_200304.csv',nrows = 10000, sep='";"',engine='python')
 
-mini_data = mini_data[mini_data['UITSLAG'].notna()]
+# Clean data
+data = EMC_library.data_cleaner('ref_data_emc_200304.csv',n=10000)
 
-mini_data['UITSLAG'] = mini_data['UITSLAG'].apply(lambda x: x.replace(',','.'))
-
-
-
-
-
-count_df_department = counter(mini_data)    # create amount of tests per department
+# Count dataset tests
+count_df_department = EMC_library.counter(data)    # create amount of tests per department
 
 
 
